@@ -19,15 +19,17 @@ const App = () => {
     console.log("obj==>", obj)
 
     if (!obj.name || !obj.email || !obj.message) {
+      setLoading(false)
       toast.error('All fields are required.');
       return;
     }
     if (!/\S+@\S+\.\S+/.test(obj.email)) {
       toast.error('Please enter a valid email.');
+      setLoading(false)
       return;
     }
 
-    axios.post('http://localhost:3000/api/contact/submit', obj).then((res) => {
+    axios.post('https://markh-second-assignment-backend.vercel.app/api/contact/submit', obj).then((res) => {
       setLoading(false)
       console.log(res)
       toast.success('Message sent successfully!');
@@ -49,7 +51,6 @@ const App = () => {
             id="name"
             className="w-full p-3 mt-2 border border-gray-300 rounded-md"
             placeholder="Your Name"
-            required
           />
         </div>
 
@@ -60,7 +61,6 @@ const App = () => {
             id="email"
             className="w-full p-3 mt-2 border border-gray-300 rounded-md"
             placeholder="Your Email"
-            required
           />
         </div>
 
@@ -71,7 +71,6 @@ const App = () => {
             className="w-full p-3 mt-2 border border-gray-300 rounded-md"
             rows="4"
             placeholder="Your Message"
-            required
           ></textarea>
         </div>
 
