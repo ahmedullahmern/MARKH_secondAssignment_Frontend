@@ -10,6 +10,7 @@ const App = () => {
     setLoading(true)
     e.preventDefault();
 
+    
     const obj = {
       name: e.target[0].value,
       email: e.target[1].value,
